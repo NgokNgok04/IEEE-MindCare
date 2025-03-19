@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
     height: 80,
     backgroundColor: "#FFF",
     justifyContent: "space-between",
+    borderTopWidth: 0,
   },
   tabBarItem: {
     flex: 1,

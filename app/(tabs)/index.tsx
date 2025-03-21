@@ -1,5 +1,15 @@
+import ArticleCarousel from "@/components/ArticlesCarousel";
+import { articles } from "@/constants/articles";
 import { icons } from "@/constants/icons";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Link } from "expo-router";
+import {
+  FlatList,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 export default function Index() {
   return (
@@ -18,7 +28,31 @@ export default function Index() {
           </View>
         </View>
       </View>
-      <ScrollView></ScrollView>
+      <View style={styles.content}>
+        <Text style={styles.subTitle}>How's your mood level?</Text>
+        <Image source={icons.statistic} style={styles.statistic} />
+      </View>
+      <View style={styles.content}>
+        <Text style={styles.subTitle}>Goals Ahead</Text>
+        <View style={styles.goal}>
+          <Image source={icons.createGoal} style={styles.createGoal} />
+          <View style={styles.goalText}>
+            <Text>Don't forget to create your goals.</Text>
+            <Link style={styles.linkGoal} href={"/goal"}>
+              Create Goals
+            </Link>
+          </View>
+        </View>
+      </View>
+      <View style={styles.articlecontent}>
+        <View style={styles.articles}>
+          <Text>Read New Articles</Text>
+          <Link style={styles.readAll} href={"/articles"}>
+            Read All
+          </Link>
+        </View>
+        <ArticleCarousel />
+      </View>
     </ScrollView>
   );
 }
@@ -53,6 +87,7 @@ const styles = StyleSheet.create({
     borderRadius: 599,
   },
   name: {
+    width: "100%",
     fontSize: 32,
     fontFamily: "Poppins_600SemiBold",
   },
@@ -60,5 +95,57 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: "Poppins_400Regular",
     transform: [{ translateY: -20 }],
+  },
+  content: {
+    justifyContent: "center",
+    marginTop: 20,
+    marginHorizontal: 25,
+    alignItems: "center",
+  },
+  articlecontent: {
+    justifyContent: "center",
+    marginTop: 20,
+    marginLeft: 25,
+    alignItems: "center",
+  },
+  subTitle: {
+    width: "100%",
+  },
+  statistic: {
+    marginTop: 20,
+    width: 170,
+    height: 170,
+  },
+  createGoal: {
+    width: 43,
+    height: 59,
+  },
+  goal: {
+    display: "flex",
+    flexDirection: "row",
+    borderRadius: 16,
+    borderWidth: 0.5,
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+    width: "100%",
+    gap: 12,
+  },
+  goalText: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  linkGoal: {
+    fontFamily: "Poppins_600SemiBold",
+    textDecorationLine: "underline",
+  },
+  articles: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    paddingRight: 25,
+    justifyContent: "space-between",
+  },
+  readAll: {
+    textDecorationLine: "underline",
   },
 });

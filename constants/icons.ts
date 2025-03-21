@@ -5,6 +5,8 @@ import counseling from "@/assets/icons/counseling.png";
 import goal from "@/assets/icons/goal.png";
 import logo3 from "@/assets/icons/logo-3.png";
 import kiel from "@/assets/images/kiel.jpg";
+import statistic from "@/assets/images/statistic.png";
+import createGoal from "@/assets/images/createGoal.png";
 export const icons = {
   home,
   journal,
@@ -13,4 +15,6 @@ export const icons = {
   goal,
   logo3,
   kiel,
+  statistic,
+  createGoal,
 };

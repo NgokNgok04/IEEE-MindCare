@@ -76,7 +76,7 @@ export default function TabsLayout() {
 
 const styles = StyleSheet.create({
   tabBar: {
-    position: "absolute",
+    position: "sticky",
     display: "flex",
     height: 80,
     backgroundColor: "#FFF",

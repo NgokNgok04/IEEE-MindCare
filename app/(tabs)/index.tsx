@@ -22,8 +22,8 @@ export default function Index() {
             resizeMode="cover"
             style={styles.profilePicture}
           />
-          <View>
-            <Text style={styles.name}>Hi, Matt!</Text>
+          <View style={styles.textSection}>
+            <Text style={styles.name}>Hi, Matt</Text>
             <Text style={styles.text}>How's Your Day?</Text>
           </View>
         </View>
@@ -86,6 +86,9 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 599,
   },
+  textSection: {
+    width: "100%",
+  },
   name: {
     width: "100%",
     fontSize: 32,
@@ -94,7 +97,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     fontFamily: "Poppins_400Regular",
-    transform: [{ translateY: -20 }],
+    transform: [{ translateY: -10 }],
   },
   content: {
     justifyContent: "center",

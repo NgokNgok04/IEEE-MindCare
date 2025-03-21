@@ -7,6 +7,7 @@ import logo3 from "@/assets/icons/logo-3.png";
 import kiel from "@/assets/images/kiel.jpg";
 import statistic from "@/assets/images/statistic.png";
 import createGoal from "@/assets/images/createGoal.png";
+import back from "@/assets/icons/back.png";
 export const icons = {
   home,
   journal,
@@ -17,4 +18,5 @@ export const icons = {
   kiel,
   statistic,
   createGoal,
+  back,
 };

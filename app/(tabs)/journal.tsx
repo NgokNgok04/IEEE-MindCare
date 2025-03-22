@@ -1,12 +1,8 @@
-import {
-  View,
-  Text,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, ScrollView, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import BackButton from "@/components/BackButton";
+import ToggleJournal from "@/components/ToggleJournal";
+import JournalHistory from "@/components/JournalHistory";
 
 const Journal = () => {
   const [selected, setSelected] = useState<"recent" | "history">("recent");
@@ -14,50 +10,10 @@ const Journal = () => {
     <ScrollView>
       <View style={styles.header}>
         <BackButton />
-        <Text style={styles.headerTitle}>Journals</Text>
-        <View style={styles.toggleContainer}>
-          <TouchableOpacity
-            onPress={() => setSelected("recent")}
-            style={[
-              styles.toggleButton,
-              selected === "recent" && styles.selectedToggle,
-              {
-                borderTopLeftRadius: 32,
-                borderBottomLeftRadius: 32,
-              },
-            ]}
-          >
-            <Text
-              style={[
-                styles.toggleText,
-                selected === "recent" && styles.selectedTextToggle,
-              ]}
-            >
-              Recent
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => setSelected("history")}
-            style={[
-              styles.toggleButton,
-              selected === "history" && styles.selectedToggle,
-              {
-                borderTopRightRadius: 32,
-                borderBottomRightRadius: 32,
-              },
-            ]}
-          >
-            <Text
-              style={[
-                styles.toggleText,
-                selected === "history" && styles.selectedTextToggle,
-              ]}
-            >
-              History
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <Text style={styles.headerTitle}>My Journals</Text>
+        <ToggleJournal selected={selected} setSelected={setSelected} />
       </View>
+      {selected === "history" && <JournalHistory />}
     </ScrollView>
   );
 };
@@ -81,35 +37,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     fontSize: 30,
     fontWeight: "bold",
-  },
-  toggleContainer: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 20,
-    borderRadius: 32,
-  },
-  toggleButton: {
-    backgroundColor: "#2732A5",
-    width: "50%",
-    height: 45,
-  },
-  toggleText: {
-    color: "#FFF",
-    fontFamily: "Poppins_600SemiBold",
-    textAlign: "center",
-    width: "100%",
-    height: "100%",
-    verticalAlign: "middle",
-  },
-  selectedToggle: {
-    backgroundColor: "#2732A5",
-  },
-  selectedTextToggle: {
-    color: "#57A6E0",
-    backgroundColor: "#DEE5FB",
-    borderColor: "#2732A5",
-    borderWidth: 2,
-    borderRadius: 32,
   },
 });

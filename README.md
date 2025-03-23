@@ -37,15 +37,19 @@ MindCare is a comprehensive mental health mobile android application designed to
 
 2. Install dependencies:
 
+```
    npm install
-
-   or
-
-   yarn install
+```
 
 3. Start the development server:
 
+```
    npx expo start
+```
+
+or
+
+You may also download the apk from the **deliverables** folder or by using this link (bit.ly/mindcareCapKakiEmpat)
 
 ## Development
 
@@ -61,7 +65,7 @@ MindCare is a comprehensive mental health mobile android application designed to
 Kelompok: Cap Kaki Empat
 Anggota:
 
-- Ignatius Jhon Hezkiel Chan
-- Matthew Vladimir Hutabarat
-- Dedy Hofmanindo Saragih
-- Daniel Mulia Putra Manurung
+- Ignatius Jhon Hezkiel Chan [Github] (https://github.com/chankiel)
+- Matthew Vladimir Hutabarat [Github] (https://github.com/NgokNgok04)
+- Dedy Hofmanindo Saragih [Github] (https://github.com/dedysaragih123)
+- Daniel Mulia Putra Manurung [Github] (https://github.com/Gryphuss)

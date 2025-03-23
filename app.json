@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/icons/logo-1.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.mindcare"
     },
     "web": {
       "bundler": "metro",
@@ -37,6 +38,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "32f96248-bbee-4cc0-b5af-edd7434d5cf0"
+      }
+    },
+    "owner": "ngokngok"
   }
 }

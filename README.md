@@ -69,3 +69,5 @@ Anggota:
 - Matthew Vladimir Hutabarat [Github] (https://github.com/NgokNgok04)
 - Dedy Hofmanindo Saragih [Github] (https://github.com/dedysaragih123)
 - Daniel Mulia Putra Manurung [Github] (https://github.com/Gryphuss)
+
+Demo Video: (https://bit.ly/CapKakiEmpatDemoSandbox)

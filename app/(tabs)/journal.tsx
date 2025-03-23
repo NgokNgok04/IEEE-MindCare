@@ -61,8 +61,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: "5%",
     bottom: "-45%",
-    // right: 20,
-    // bottom: 0,
   },
   addImage: {
     width: 50,

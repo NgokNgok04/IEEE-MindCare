@@ -16,3 +16,8 @@ interface HistoryJournal {
   date: Date;
   textJournal: string;
 }
+
+interface Post {
+  name: string;
+  content: string;
+}

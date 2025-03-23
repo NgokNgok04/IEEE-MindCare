@@ -19,6 +19,7 @@ import fire from "@/assets/icons/fire.png";
 import add from "@/assets/icons/add.png";
 import voice from "@/assets/icons/voice.png";
 import text from "@/assets/icons/text.png";
+import person from "@/assets/images/person.png";
 export const icons = {
   home,
   journal,
@@ -41,4 +42,5 @@ export const icons = {
   add,
   voice,
   text,
+  person,
 };

@@ -8,12 +8,16 @@ import {
 import React, { useState } from "react";
 import BackButton from "@/components/BackButton";
 import { questions } from "@/constants/questions";
+import { router } from "expo-router";
 
 const TextJournal = () => {
   const [question, setQuestion] = useState(1);
   const total = questions.length;
   const handleNext = () => {
     setQuestion((question) => Math.min(total, question + 1));
+    if (question >= total - 1) {
+      router.push("/(journal)/finishJournal");
+    }
   };
   const handlePrev = () => {
     setQuestion((question) => Math.max(1, question - 1));

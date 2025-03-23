@@ -5,24 +5,82 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import BackButton from "@/components/BackButton";
 import { questions } from "@/constants/questions";
 import { router } from "expo-router";
+import { addJournalSession } from "@/firebase/db/journalService";
+import { analyzeJournalEmotion, askGemini } from "@/services/geminiService";
 
 const TextJournal = () => {
   const [question, setQuestion] = useState(1);
+  const [answer, setAnswer] = useState<string[]>(
+    Array(questions.length).fill("")
+  );
+  const inputRef = useRef<string>("");
+  const textInputRef = useRef<TextInput>(null);
+
+  useEffect(() => {
+    const savedAnswer = answer[question - 1] || "";
+
+    inputRef.current = savedAnswer || "";
+    if (textInputRef.current) {
+      textInputRef.current.setNativeProps({
+        text: savedAnswer || "",
+      });
+    }
+  }, [question]);
+
   const total = questions.length;
-  const handleNext = () => {
-    setQuestion((question) => Math.min(total, question + 1));
-    if (question >= total - 1) {
-      router.push("/(journal)/finishJournal");
+
+  const handleNext = async () => {
+    const newAnswer = [...answer];
+    newAnswer[question - 1] = inputRef.current;
+    setAnswer(newAnswer);
+    inputRef.current = "";
+
+    if (question >= total) {
+      const emotionAnalysis = await analyzeJournalEmotion(answer[0]);
+      const generalResponse = await askGemini(answer[0]);
+
+      const result = answer.map((str) => ({
+        questionId: Math.random().toString(36).substring(2, 9),
+        content: str,
+      }));
+      console.log("SCORE", emotionAnalysis.score);
+      console.log("RESPONSE", generalResponse);
+      if (emotionAnalysis && generalResponse) {
+        addJournalSession(
+          "KWSOKwZPJL1Y1AxevHdX",
+          generalResponse,
+          emotionAnalysis.score,
+          result
+        );
+      }
+
+      console.log("THIS IS IT", answer);
+      router.push({
+        pathname: "/(journal)/finishJournal",
+        params: {
+          score: emotionAnalysis.score.toString(),
+          summary: generalResponse,
+        },
+      });
+    } else {
+      setQuestion((question) => Math.min(total, question + 1));
     }
   };
+
   const handlePrev = () => {
-    setQuestion((question) => Math.max(1, question - 1));
+    const updatedAnswers = [...answer];
+    updatedAnswers[question - 1] = inputRef.current; // save current answer
+    setAnswer(updatedAnswers);
+
+    inputRef.current = ""; // clear value before switching
+    setQuestion((prev) => Math.max(1, prev - 1));
   };
   const progress = ((question - 1) / total) * 100;
+  console.log(answer);
   return (
     <View>
       <View style={styles.header}>
@@ -36,7 +94,9 @@ const TextJournal = () => {
       <View style={styles.content}>
         <Text style={styles.question}>{questions[question - 1].question}</Text>
         <TextInput
+          ref={textInputRef}
           placeholder="Write Your message here..."
+          onChangeText={(text) => (inputRef.current = text)}
           multiline={true}
           style={styles.answer}
           textAlignVertical="top"

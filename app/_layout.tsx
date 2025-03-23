@@ -8,6 +8,7 @@ import { useFonts } from "expo-font";
 import "./globals.css";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import React from "react";
 
 SplashScreen.preventAutoHideAsync();
 

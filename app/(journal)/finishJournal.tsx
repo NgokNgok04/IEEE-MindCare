@@ -1,12 +1,21 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import React from "react";
 import BackButton from "@/components/BackButton";
 import { icons } from "@/constants/icons";
-import { Link, router } from "expo-router";
-
+import { Link, router, useLocalSearchParams } from "expo-router";
 const FinishJournal = () => {
+  const { score, summary } = useLocalSearchParams();
+  console.log("SCORE FINISH JOURNAL :", score);
+  console.log("FINISH JOURNAL :", summary);
   return (
-    <View>
+    <ScrollView>
       <View style={styles.header}>
         <BackButton />
         <Text style={styles.headerTitle}>DONE!!!</Text>
@@ -14,7 +23,7 @@ const FinishJournal = () => {
       <View style={styles.content}>
         <Text style={styles.subtitle}>Journaling Done!!!</Text>
         <Image source={icons.person} style={styles.image} />
-        <Text style={styles.text}>You made a great progress today!</Text>
+        <Text style={styles.text}>{summary}</Text>
         <TouchableOpacity
           onPress={() => router.push("/(tabs)/journal")}
           style={styles.finishBtn}
@@ -22,7 +31,7 @@ const FinishJournal = () => {
           <Text style={styles.textBtn}>Finish</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

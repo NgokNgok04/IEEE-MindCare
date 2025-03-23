@@ -8,7 +8,6 @@ import { useFonts } from "expo-font";
 import "./globals.css";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
-import { StyleSheet } from "react-native";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -28,6 +27,12 @@ export default function RootLayout() {
   return (
     <Stack>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="(journal)"
+        options={{
+          headerShown: false,
+        }}
+      />
       <Stack.Screen
         name="articles"
         options={{

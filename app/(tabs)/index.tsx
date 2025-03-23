@@ -1,15 +1,7 @@
 import ArticleCarousel from "@/components/ArticlesCarousel";
-import { articles } from "@/constants/articles";
 import { icons } from "@/constants/icons";
-import { Link } from "expo-router";
-import {
-  FlatList,
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Link, router } from "expo-router";
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
   return (

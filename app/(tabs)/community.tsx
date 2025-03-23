@@ -8,13 +8,33 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { icons } from "@/constants/icons";
-import { users } from "@/constants/user";
-import Post from "@/components/Post";
+import { Post } from "@/firebase/db/interface";
+import { Timestamp } from "firebase/firestore";
+import { addPost, fetchPosts } from "@/firebase/db/communityService";
+import PostDetail from "@/components/PostDetail";
 
 const Community = () => {
   const [isFocused, setIsFocused] = useState(false);
+  const inputRef = useRef<string>("");
+  const [postData, setPostData] = useState<Post[]>([
+    {
+      id: "0",
+      userId: "0",
+      content: "",
+      parentId: "0",
+      created_at: Timestamp.now(),
+      updated_at: Timestamp.now(),
+    },
+  ]);
+
+  async function handlePost(content: string) {
+    setIsFocused(false);
+    await addPost("KWSOKwZPJL1Y1AxevHdX", content, null);
+    const response = await fetchPosts();
+    setPostData(response);
+  }
   return (
     <ScrollView>
       <View style={styles.navbar}>
@@ -36,22 +56,25 @@ const Community = () => {
           multiline={true}
           style={styles.createPost}
           placeholderTextColor="#888"
+          onChangeText={(text) => (inputRef.current = text)}
           onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
           textAlignVertical="top"
         />
         {isFocused && (
-          <TouchableOpacity style={styles.postBtn}>
+          <TouchableOpacity
+            style={styles.postBtn}
+            onPress={() => handlePost(inputRef.current)}
+          >
             <Text style={styles.textBtn}>Post</Text>
           </TouchableOpacity>
         )}
         <View style={styles.posts}>
           <FlatList
-            data={users}
+            data={postData}
             keyExtractor={(item, index) => index.toString()}
             scrollEnabled={false}
             renderItem={({ item }) => (
-              <Post name={item.name} content={item.content} />
+              <PostDetail name={"Anonymous"} content={item.content} />
             )}
           />
         </View>

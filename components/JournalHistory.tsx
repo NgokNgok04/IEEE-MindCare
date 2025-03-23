@@ -18,7 +18,6 @@ const JournalHistory = () => {
   useEffect(() => {
     async function fetchResponse() {
       const response = await fetchAllJournalSessions("KWSOKwZPJL1Y1AxevHdX");
-      console.log(response);
       setJournalData(response);
     }
     fetchResponse();

@@ -47,8 +47,6 @@ const TextJournal = () => {
         questionId: Math.random().toString(36).substring(2, 9),
         content: str,
       }));
-      console.log("SCORE", emotionAnalysis.score);
-      console.log("RESPONSE", generalResponse);
 
       if (emotionAnalysis && generalResponse) {
         addJournalSession(
@@ -59,7 +57,6 @@ const TextJournal = () => {
         );
       }
 
-      console.log("THIS IS IT", answer);
       router.push({
         pathname: "/(journal)/finishJournal",
         params: {
@@ -81,7 +78,6 @@ const TextJournal = () => {
     setQuestion((prev) => Math.max(1, prev - 1));
   };
   const progress = ((question - 1) / total) * 100;
-  console.log(answer);
   return (
     <View>
       <View style={styles.header}>

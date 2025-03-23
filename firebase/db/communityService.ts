@@ -12,6 +12,8 @@ import {
   where,
 } from "firebase/firestore";
 
+import { Post, Like } from "./interface";
+
 const addPost = async (
   userId: string,
   content: string,
@@ -40,19 +42,19 @@ const editPost = async (postId: string, content?: string) => {
   }
 };
 
-const updateLike = async ( postId: string, likerId: string) => {
-    const likeCol = collection(db,"posts",postId,"likes");
-    const q = query(likeCol,where("likerId","==",likerId))
-    const likes = await getDocs(q);
-    if(likes.empty){
-        await addDoc(likeCol,{
-            likerId,
-            created_at: serverTimestamp(),
-        })
-    }else{
-        await deleteDoc(doc(likeCol,likes.docs[0].id))
-    }
-}
+const updateLike = async (postId: string, likerId: string) => {
+  const likeCol = collection(db, "posts", postId, "likes");
+  const q = query(likeCol, where("likerId", "==", likerId));
+  const likes = await getDocs(q);
+  if (likes.empty) {
+    await addDoc(likeCol, {
+      likerId,
+      created_at: serverTimestamp(),
+    });
+  } else {
+    await deleteDoc(doc(likeCol, likes.docs[0].id));
+  }
+};
 
 const deletePost = async (postId: string) => {
   const postDoc = doc(db, "posts", postId);
@@ -71,3 +73,15 @@ const fetchPostReplies = async (postId: string) => {
 
   return replies;
 };
+
+const fetchPosts = async () => {
+  const postCol = collection(db, "posts");
+  const q = query(postCol, where("parentId", "==", null));
+  const docs = await getDocs(q);
+
+  const posts = docs.docs.map((doc) => ({ id: doc.id, ...doc.data() } as Post));
+
+  return posts;
+};
+
+export { addPost, editPost, deletePost, fetchPosts };

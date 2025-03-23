@@ -12,8 +12,6 @@ import { icons } from "@/constants/icons";
 import { Link, router, useLocalSearchParams } from "expo-router";
 const FinishJournal = () => {
   const { score, summary } = useLocalSearchParams();
-  console.log("SCORE FINISH JOURNAL :", score);
-  console.log("FINISH JOURNAL :", summary);
   return (
     <ScrollView>
       <View style={styles.header}>

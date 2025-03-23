@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 
-const Post = ({ name, content }: Post) => {
+const PostDetail = ({ name, content }: Post) => {
   return (
     <View style={styles.post}>
       <Text style={styles.name}>{name}</Text>
@@ -10,7 +10,7 @@ const Post = ({ name, content }: Post) => {
   );
 };
 
-export default Post;
+export default PostDetail;
 
 const styles = StyleSheet.create({
   post: {

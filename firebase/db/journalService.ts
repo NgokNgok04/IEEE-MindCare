@@ -55,10 +55,10 @@ const editJournalSession = async (userId: string, journalSessionId: string, summ
     }
 };
 
-const fetchAllJournalSessions = async (userId: string) => {
+const fetchAllJournalSessions = async (userId: string) : Promise<JournalSession[]> => {
     const journalSessionCol = collection(db,"users",userId,"journalSessions");
     const journalDocs = await getDocs(journalSessionCol);
-    const data = journalDocs.docs.map((doc)=>({id: doc.id, ...doc.data}))
+    const data = journalDocs.docs.map((doc)=>({id: doc.id, ...doc.data()} as JournalSession))
     return data;
 }
 
@@ -87,11 +87,27 @@ const editJournal = async (userId: string, journalSessionId: string, journalId: 
     }
 };
 
-const fetchJournalsBySession = async (userId: string,journalSessionId: string ) => {
+const fetchJournalsBySession = async (userId: string,journalSessionId: string ): Promise<JournalWithQuestion[]>=> {
     const journalsCol = collection(db,"users",userId,"journalSessions",journalSessionId,"journals");
     const journalDocs = await getDocs(journalsCol);
-    const docs = journalDocs.docs.map((doc)=>({id: doc.id, ...doc.data}))
-    return docs;
+    const journals: JournalWithQuestion[] = await Promise.all(journalDocs.docs.map(async(docSnapshot)=>{
+        const data = {id: docSnapshot.id,...docSnapshot.data()} as Journal;
+        const questionId = data.questionId;
+
+        let questionData: JournalQuestion | undefined = undefined;
+        if(questionId){
+            const questionDoc = await getDoc(doc(db,"journalQuestions",questionId));
+            if(questionDoc.exists()){
+                questionData = { id: questionDoc.id, ...questionDoc.data() } as JournalQuestion;
+            }
+        }
+
+        return {
+            ...data,
+            question: questionData,
+        }
+    }))
+    return journals;
 }
 
 export {addJournalQuestion,fetchJournalQuestionType,deleteJournalQuestion};

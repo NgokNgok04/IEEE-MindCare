@@ -1,50 +1,67 @@
-# Welcome to your Expo app 👋
+# MindCare
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+MindCare is a comprehensive mental health mobile android application designed to support users in their wellness journey through multiple integrated features. The app provides a safe space for users to track their mental health, connect with others, and receive AI-assisted guidance.
 
-## Get started
+## Features
 
-1. Install dependencies
+### 🧠 Mental Health Tools
 
-   ```bash
-   npm install
-   ```
+- **Journaling**: Track daily thoughts, feelings, and experiences with a simple and intuitive interface
+- **AI-Assisted Journaling**: Receive prompts, insights, and patterns analysis based on your journal entries
+- **Goal Setting**: Create and monitor mental health goals with progress tracking
 
-2. Start the app
+### 👥 Community Support
 
-   ```bash
-    npx expo start
-   ```
+- **Community Forums**: Connect with others who share similar experiences
+- **Support Groups**: Join topic-specific groups moderated by community leaders
+- **Resource Sharing**: Access and share helpful mental health resources and articles
 
-In the output, you'll find options to open the app in a
+## Setup
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### Prerequisites
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+- Node.js (v14 or newer)
+- npm or yarn
+- Expo CLI
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Installation
 
-## Learn more
+1. Clone the repository:
 
-To learn more about developing your project with Expo, look at the following resources:
+```
+   git clone https://github.com/NgokNgok04/IEEE-MindCare
+   cd IEEE-MindCare
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+2. Install dependencies:
 
-## Join the community
+   npm install
 
-Join our community of developers creating universal apps.
+   or
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+   yarn install
+
+3. Start the development server:
+
+   npx expo start
+
+## Development
+
+### Key Technologies
+
+- **React Native**: Core framework for cross-platform mobile development
+- **Expo**: Development platform for React Native
+- **Expo Router**: File-based routing system
+- **Firebase**: Backend services for authentication and database
+
+## Creators
+
+Kelompok: Cap Kaki Empat
+Anggota:
+
+- Ignatius Jhon Hezkiel Chan
+- Matthew Vladimir Hutabarat
+- Dedy Hofmanindo Saragih
+- Daniel Mulia Putra Manurung

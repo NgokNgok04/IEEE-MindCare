@@ -49,6 +49,7 @@ const TextJournal = () => {
       }));
       console.log("SCORE", emotionAnalysis.score);
       console.log("RESPONSE", generalResponse);
+
       if (emotionAnalysis && generalResponse) {
         addJournalSession(
           "KWSOKwZPJL1Y1AxevHdX",

@@ -1,20 +1,39 @@
 import { View, FlatList, StyleSheet } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import JournalCard from "./JournalCard";
 import { journals } from "@/constants/journals";
+import { JournalSession } from "@/firebase/db/interface";
+import { Timestamp } from "firebase/firestore";
+import { fetchAllJournalSessions } from "@/firebase/db/journalService";
 
 const JournalHistory = () => {
+  const [journalData, setJournalData] = useState<JournalSession[]>([
+    {
+      id: "0",
+      created_at: Timestamp.now(),
+      summary: "",
+      score: 0,
+    },
+  ]);
+  useEffect(() => {
+    async function fetchResponse() {
+      const response = await fetchAllJournalSessions("KWSOKwZPJL1Y1AxevHdX");
+      console.log(response);
+      setJournalData(response);
+    }
+    fetchResponse();
+  }, []);
   return (
     <View style={styles.historyJournal}>
       <FlatList
-        data={journals}
+        data={journalData}
         scrollEnabled={false}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
           <JournalCard
-            date={item.date}
-            textJournal={item.textJournal}
-            mood={item.mood}
+            date={item.created_at.toDate()}
+            textJournal={item.summary}
+            mood={item.score}
           />
         )}
       />

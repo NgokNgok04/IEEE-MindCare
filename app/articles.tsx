@@ -2,14 +2,11 @@ import {
   View,
   Text,
   ScrollView,
-  TouchableOpacity,
   Image,
   StyleSheet,
   FlatList,
 } from "react-native";
 import React from "react";
-import { router } from "expo-router";
-import { icons } from "@/constants/icons";
 import BackButton from "@/components/BackButton";
 import { articles } from "@/constants/articles";
 
@@ -20,6 +17,7 @@ const Articles = () => {
         <BackButton />
         <Text style={styles.headerTitle}>Articles</Text>
       </View>
+      {/* <Text>Haloo</Text> */}
       <Text style={styles.textSubtitle}>Read New Articles</Text>
       <FlatList
         contentContainerStyle={styles.articlesGrid}
